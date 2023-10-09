@@ -1,9 +1,13 @@
 package com.example.zomato.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Restaurant {
@@ -14,6 +18,11 @@ public class Restaurant {
 	private String name;
 	private String address;
 	private String number;
+	
+	@OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
+	private List<FoodItem> foodItems;
+	
+	
 	public int getId() {
 		return id;
 	}
