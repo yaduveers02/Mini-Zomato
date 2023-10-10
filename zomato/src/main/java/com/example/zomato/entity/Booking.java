@@ -24,14 +24,6 @@ public class Booking {
 	@JoinColumn(name = "restaurant_id")
 	private Restaurant restaurant;
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public String getDate() {
 		return date;
 	}
@@ -64,9 +56,8 @@ public class Booking {
 		this.restaurant = restaurant;
 	}
 
-	public Booking(int id, String date, String timing, User user, Restaurant restaurant) {
+	public Booking(String date, String timing, User user, Restaurant restaurant) {
 		super();
-		this.id = id;
 		this.date = date;
 		this.timing = timing;
 		this.user = user;
@@ -77,6 +68,8 @@ public class Booking {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	
 	
 	
 	
