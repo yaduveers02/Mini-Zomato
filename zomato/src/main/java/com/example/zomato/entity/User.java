@@ -9,6 +9,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 //import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -28,11 +30,14 @@ public class User {
 	private String email;
 	@Column(name = "password")
 	private String password;
-	@Column(name = "role")
-	private String role;
+	
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Booking> bookings;
+	
+	@JoinColumn(name = "role_id")
+	@ManyToOne
+	private Role role;
 	
 //	@OneToOne
 //	private Cart cart;
@@ -73,14 +78,6 @@ public class User {
 		this.password = password;
 	}
 
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
 	public List<Booking> getBookings() {
 		return bookings;
 	}
@@ -97,13 +94,13 @@ public class User {
 //		this.cart = cart;
 //	}
 
-	public User(String firstName, String lastName, String email, String password, String role, List<Booking> bookings) {
+	public User(String firstName, String lastName, String email, String password, List<Booking> bookings) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
-		this.role = role;
+
 		this.bookings = bookings;
 //		this.cart = cart;
 	}
